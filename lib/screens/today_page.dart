@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:calorie_count_app/functional_class/api_caller.dart';
+
+import '../functional_class/api_caller.dart';
 
 class TodayPage extends StatefulWidget {
   @override
@@ -21,8 +24,25 @@ class _TodayPageState extends State<TodayPage> {
   ///hint: you may need this to handle API calls
   ///bool loading = true;
 
-  loadList() {
+  loadList() async{
     ///TODO: Call Get Meal API here
+    ///
+    try {
+
+      ApiCaller caller = ApiCaller();
+      dynamic data = await caller.getAllMeal();
+
+      if (data != null){
+
+        print(data);
+        return data ;
+      }
+
+    } catch(e){
+        print("fail");
+        print(e);
+    }
+
   }
 
   @override
@@ -45,6 +65,12 @@ class _TodayPageState extends State<TodayPage> {
   ///TODO: use this callback function to update TodayPage UI after edit or add meals
   callbackToUpdateUI(List<Meal> meal, int cal) {
     setState(() {
+
+      // The API call returned an error message.
+      // However, for this part, all you have to do is get get the JSONData from the loadlist,
+      // then extract the jsondata which contains separate data such as mealList and total calories,
+      // and update it in this callback function.
+
       mealsList = meal;
       totalCal = cal;
     });

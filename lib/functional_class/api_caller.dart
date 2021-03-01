@@ -11,25 +11,26 @@ class ApiCaller {
   };
 
 
+
   ///TODO: Create your api caller functions here
   // Below are sample functions to make GET and POST API calls, you can
   // write your own function too :)
   //
-   static Future getFunction() async {
-     var response = await http.get("https://www.getpostman.com/collections/4d746faa4c27b666871e", headers: API_DEFAULT_REQUEST_HEADERS);
+   Future getAllMeal() async {
+     var response =  await http.get("https:\/\/bestweb.my\/interview_test\/api\/meals\/get_all_meal?api_key=interviewtest@8888");
 
      if (response.statusCode == 200){
        var data = jsonDecode(response.body);
        return data;
      } else {
+       print("Error occured");
        print(response.statusCode);
-       return ; }
-
+       return null ; }
 
    }
 
-   static Future postFunction(variable) async {
-     var response = await http.post("https://www.getpostman.com/collections/4d746faa4c27b666871e",
+   Future createOrEditMeal(variable) async {
+     var response = await http.post("https:\/\/bestweb.my\/interview_test\/api\/meals\/create_or_edit_meal?api_key=interviewtest@8888",
          headers: API_DEFAULT_REQUEST_HEADERS ,
          body: {
            'param': variable,
@@ -40,7 +41,7 @@ class ApiCaller {
        return data;
      } else {
        print(response.statusCode);
-       return ; }
+       return null; }
    }
 
 }
