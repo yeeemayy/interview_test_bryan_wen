@@ -1,6 +1,7 @@
 import 'package:calorie_count_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:calorie_count_app/functional_class/api_caller.dart';
 
 class AddMealScreen extends StatefulWidget {
   final Color themeColor;
@@ -172,6 +173,23 @@ class _AddMealScreenState extends State<AddMealScreen> {
 
                       ///TODO: Call Add Meal API here and show a success/fail toast
                       ///Hint: Remember to use callback function to update TodayPage UI too,
+                      try {
+
+                        ApiCaller caller = ApiCaller();
+
+                        // Added a dummy variable to be called. 
+                        dynamic data = caller.createOrEditMeal("Food");
+
+                        if (data != null){
+
+                          print(data);
+                          return data ;
+                        }
+
+                      } catch(e){
+                        print("fail");
+                        print(e);
+                      }
                       ///Or you can use your preferred State Management method (eg: Provider)
                     }
                   },

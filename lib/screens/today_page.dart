@@ -66,7 +66,7 @@ class _TodayPageState extends State<TodayPage> {
   callbackToUpdateUI(List<Meal> meal, int cal) {
     setState(() {
 
-      // The API call returned an error message.
+      // The API call returned an error message when i called.
       // However, for this part, all you have to do is get get the JSONData from the loadlist,
       // then extract the jsondata which contains separate data such as mealList and total calories,
       // and update it in this callback function.
